@@ -32,5 +32,8 @@
   "devDependencies": {
     "rustywind": "0.6.7",
     "tailwindcss": "1.9.6"
+  },
+  "prettier": {
+    "semi": false
   }
 }
