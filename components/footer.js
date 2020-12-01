@@ -20,7 +20,7 @@ function Footer() {
         </li>
       </ul>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
