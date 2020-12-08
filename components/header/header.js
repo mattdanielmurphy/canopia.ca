@@ -1,18 +1,17 @@
 import Link from "next/link"
 import { useState } from "react"
+import styles from './header.module.css'
 
-function Header() {
+function Header({ borderless, floatOnTop }) {
   const [isExpanded, toggleExpansion] = useState(false)
 
   return (
-    <header className="bg-teal-500">
+    <header className={`${floatOnTop ? "floating" : ""}`}>
       <div className="flex flex-wrap items-center justify-between max-w-4xl p-4 mx-auto md:flex-no-wrap md:p-8">
         <div className="flex items-center">
-          <img src="tailwind-logo.svg" className="w-10 mr-3 text-white" />
-
           <Link href="/">
-            <a className="text-xl font-bold text-white">
-              Next.js Starter Tailwind
+            <a className="text-3xl font-bold text-black">
+              Canopia<span style={{ fontWeight: "normal" }}>.ca</span>
             </a>
           </Link>
         </div>
@@ -34,15 +33,20 @@ function Header() {
         <ul
           className={`${
             isExpanded ? `block` : `hidden`
-          } md:flex flex-col md:flex-row md:items-center md:justify-center text-sm w-full md:w-auto`}
+          } md:flex flex-col md:flex-row md:items-center md:justify-center text-lg w-full md:w-auto`}
         >
           {[
-            { title: "Home", route: "/" },
             { title: "About", route: "/about" },
+            { title: "Contact", route: "/contact" },
+            { title: "Presentation", route: "/presentation" },
+            { title: "Articles & Resources", route: "/articles-and-resources" },
+            { title: "Blog Posts", route: "/blog-posts" },
           ].map((navigationItem) => (
             <li className="mt-3 md:mt-0 md:ml-6" key={navigationItem.title}>
               <Link href={navigationItem.route}>
-                <a className="block text-white">{navigationItem.title}</a>
+                <a className="block text-black uppercase tracking-wide">
+                  {navigationItem.title}
+                </a>
               </Link>
             </li>
           ))}
