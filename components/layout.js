@@ -1,13 +1,19 @@
+import styled from "styled-components"
 import Header from "./header"
 import Footer from "./footer"
 
-function Layout(props) {
+const S = {}
+
+S.Wrapper = styled.div``
+S.Main = styled.main``
+
+function Layout({ children, overlaidHeader }) {
   return (
-    <div>
-      <Header />
-      <main>{props.children}</main>
+    <S.Wrapper>
+      <Header overlaidHeader={overlaidHeader} />
+      <S.Main>{children}</S.Main>
       <Footer />
-    </div>
+    </S.Wrapper>
   )
 }
 
