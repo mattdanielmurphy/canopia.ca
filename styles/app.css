@@ -14,5 +14,9 @@ footer a {
 }
 
 .unstyled-link:hover {
+  color: black !important;
+}
+
+.unstyled-link.overlaid-header:hover {
   color: #577832 !important;
 }

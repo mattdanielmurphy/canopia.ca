@@ -139,6 +139,7 @@ export function Nav({ links, overlaidHeader }) {
               href={navigationItem.route}
               mobileView={mobileView}
               color={overlaidHeader ? global.color : "white"}
+              overlaidHeader={overlaidHeader}
             >
               {navigationItem.title}
             </S.Link>
