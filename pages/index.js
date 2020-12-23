@@ -1,8 +1,9 @@
-import Layout from "../components/layout"
-import Header from "../components/header"
-import { getSortedPostsData } from "../lib/posts"
-import global from "../styles/globalVariables"
-import styled from "styled-components"
+import Layout from '../components/layout'
+import Header from '../components/header'
+import { getSortedPostsData } from '../lib/posts'
+import global from '../styles/globalVariables'
+import styled from 'styled-components'
+import { UnstyledLink } from '../components/shared'
 const S = {}
 
 S.Smaller = styled.span`
@@ -15,6 +16,16 @@ S.Green = styled.strong`
   color: ${global.green};
 `
 
+S.Dialog = styled.div`
+  padding: 2rem;
+  background: rgba(237, 238, 240, 0.5);
+`
+
+S.Link = styled(UnstyledLink)`
+  padding: 2rem;
+  background: rgba(237, 238, 240, 0.5);
+`
+
 S.H1 = styled.h1`
   font-weight: normal;
   text-align: center;
@@ -22,8 +33,8 @@ S.H1 = styled.h1`
 
 S.Hero = styled.section`
   height: 100vh;
-  background: #edeef0;
-  background-image: url("trees.jpeg");
+  background: rgb(237, 238, 240);
+  background-image: url('trees.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -36,19 +47,21 @@ function IndexPage({ allPostsData }) {
   return (
     <Layout overlaidHeader>
       <S.Hero>
-        <S.H1>
-          Information &amp; Strategies
-          <br />
-          <S.Smaller>for the</S.Smaller>{" "}
-          <S.Green>Protection &amp; Regrowth</S.Green>
-          <br />
-          <S.Smaller>of</S.Smaller> <S.Green>Perennial Ecosystems</S.Green>
-        </S.H1>
+        <S.Dialog>
+          <S.H1>
+            Information &amp; Strategies
+            <br />
+            <S.Smaller>for the</S.Smaller>{' '}
+            <S.Green>Protection &amp; Regrowth</S.Green>
+            <br />
+            <S.Smaller>of</S.Smaller> <S.Green>Perennial Ecosystems</S.Green>
+          </S.H1>
+          <S.Link>See recent posts</S.Link>
+        </S.Dialog>
       </S.Hero>
       <Header></Header>
-      <h2>Welcome to Canopia.ca</h2>
+      <h2>Latest Posts</h2>
       <div>
-        <h3>Latest posts</h3>
         <ul>
           {allPostsData.map(({ id, date, title }) => (
             <li key={id}>

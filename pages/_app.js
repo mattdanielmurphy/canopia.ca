@@ -1,5 +1,5 @@
-import "normalize.css"
-import "../styles/app.css"
+import 'normalize.css'
+import '../styles/app.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

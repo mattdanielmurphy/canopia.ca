@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import styled from "styled-components"
-import useWindowSize from "../../lib/useWindowSize"
-import global from "../../styles/globalVariables"
-import UnstyledLink from "../shared"
+import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import useWindowSize from '../../lib/useWindowSize'
+import global from '../../styles/globalVariables'
+import UnstyledLink from '../shared'
 
 const S = {}
 
@@ -31,7 +31,7 @@ S.CloseNavMenuOverlay = styled(S.BlankButton)`
   bottom: 0;
   left: 0;
   right: 0;
-  cursor: url("close-cursor.svg"), auto;
+  cursor: url('close-cursor.svg'), auto;
 `
 
 S.NavList = styled.ul`
@@ -43,7 +43,7 @@ S.NavList = styled.ul`
   ${({ mobileView, isExpanded }) =>
     mobileView
       ? `
-      display: ${isExpanded ? "block" : "none"};
+      display: ${isExpanded ? 'block' : 'none'};
       position: absolute;
       top: 0;
       text-align: right;
@@ -111,11 +111,11 @@ export function Nav({ links, overlaidHeader }) {
       {mobileView && (
         <>
           <S.ToggleNavButton onClick={toggleExpansion}>
-            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <title>Menu</title>
               <path
                 fill={global.color}
-                d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
+                d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'
               />
             </svg>
           </S.ToggleNavButton>
@@ -124,7 +124,7 @@ export function Nav({ links, overlaidHeader }) {
               onClick={(e) => {
                 // these lines are so cursor goes back to normal immediately after clicking; otherwise,
                 // user must move cursor first... I don't know why a "0ms" timeout works but it does
-                e.target.style.cursor = "default"
+                e.target.style.cursor = 'default'
                 setTimeout(() => toggleExpansion(), 0)
               }}
             />
@@ -138,7 +138,7 @@ export function Nav({ links, overlaidHeader }) {
             <S.Link
               href={navigationItem.route}
               mobileView={mobileView}
-              color={overlaidHeader ? global.color : "white"}
+              color={overlaidHeader ? global.color : 'white'}
               overlaidHeader={overlaidHeader}
             >
               {navigationItem.title}

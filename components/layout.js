@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import Header from "./header"
-import Footer from "./footer"
+import styled from 'styled-components'
+import Header from './header'
+import Footer from './footer'
 
 const S = {}
 

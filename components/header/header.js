@@ -1,8 +1,8 @@
-import styled from "styled-components"
-import { Nav } from "./nav"
-import Logo from "./logo"
-import global from "../../styles/globalVariables"
-import UnstyledLink from "../shared"
+import styled from 'styled-components'
+import { Nav } from './nav'
+import Logo from './logo'
+import global from '../../styles/globalVariables'
+import UnstyledLink from '../shared'
 
 const S = {}
 
@@ -54,23 +54,23 @@ S.SiteNameAndLogo = styled.div`
 
 function Header({ overlaidHeader }) {
   const links = [
-    { title: "About", route: "/about" },
-    { title: "Contact", route: "/contact" },
-    { title: "Presentation", route: "/presentation" },
-    { title: "Articles & Resources", route: "/articles-and-resources" },
-    { title: "Blog Posts", route: "/blog-posts" },
+    { title: 'About', route: '/about' },
+    { title: 'Contact', route: '/contact' },
+    { title: 'Presentation', route: '/presentation' },
+    { title: 'Articles & Resources', route: '/articles-and-resources' },
+    { title: 'Blog Posts', route: '/blog-posts' },
   ]
 
   return (
     <S.HeaderWrapper overlaidHeader={overlaidHeader}>
       <S.Header overlaidHeader={overlaidHeader}>
         <S.SiteNameAndLogo>
-          <UnstyledLink href="/">
-            <Logo color={overlaidHeader ? global.color : "white"}></Logo>
+          <UnstyledLink href='/'>
+            <Logo color={overlaidHeader ? global.color : 'white'}></Logo>
           </UnstyledLink>
           <UnstyledLink
-            href="/"
-            color={overlaidHeader ? global.color : "white"}
+            href='/'
+            color={overlaidHeader ? global.color : 'white'}
           >
             <strong>Canopia</strong>.ca
           </UnstyledLink>
