@@ -2,29 +2,27 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useWindowSize from '../../lib/useWindowSize'
 import global from '../../styles/globalVariables'
-import UnstyledLink from '../shared'
+import { UnstyledLink } from '../shared'
 
-const S = {}
-
-S.BlankButton = styled.button`
+const $BlankButton = styled.button`
   appearance: none;
   background: none;
   border: none;
   cursor: pointer;
 `
 
-S.Nav = styled.nav`
+const $Nav = styled.nav`
   width: 100%;
   display: flex;
   justify-content: flex-end;
 `
 
-S.ToggleNavButton = styled(S.BlankButton)`
+const $ToggleNavButton = styled($BlankButton)`
   width: 40px;
   align-self: flex-end;
 `
 
-S.CloseNavMenuOverlay = styled(S.BlankButton)`
+const $CloseNavMenuOverlay = styled($BlankButton)`
   position: absolute;
   top: 13rem;
   background: rgba(${global.colorAsRGB}, 0.7);
@@ -34,7 +32,7 @@ S.CloseNavMenuOverlay = styled(S.BlankButton)`
   cursor: url('close-cursor.svg'), auto;
 `
 
-S.NavList = styled.ul`
+const $NavList = styled.ul`
   list-style: none;
   margin: 0;
   justify-content: flex-end;
@@ -57,14 +55,14 @@ S.NavList = styled.ul`
     `}
 `
 
-S.NavItem = styled.li`
+const $NavItem = styled.li`
   ${({ mobileView }) =>
     !mobileView &&
     `
   `}
 `
 
-S.Link = styled(UnstyledLink)`
+const $Link = styled(UnstyledLink)`
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
@@ -107,10 +105,10 @@ export function Nav({ links, overlaidHeader }) {
   }, [windowSize.width])
 
   return (
-    <S.Nav>
+    <$Nav>
       {mobileView && (
         <>
-          <S.ToggleNavButton onClick={toggleExpansion}>
+          <$ToggleNavButton onClick={toggleExpansion}>
             <svg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <title>Menu</title>
               <path
@@ -118,9 +116,9 @@ export function Nav({ links, overlaidHeader }) {
                 d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'
               />
             </svg>
-          </S.ToggleNavButton>
+          </$ToggleNavButton>
           {isExpanded && (
-            <S.CloseNavMenuOverlay
+            <$CloseNavMenuOverlay
               onClick={(e) => {
                 // these lines are so cursor goes back to normal immediately after clicking; otherwise,
                 // user must move cursor first... I don't know why a "0ms" timeout works but it does
@@ -132,20 +130,20 @@ export function Nav({ links, overlaidHeader }) {
         </>
       )}
 
-      <S.NavList mobileView={mobileView} isExpanded={isExpanded}>
+      <$NavList mobileView={mobileView} isExpanded={isExpanded}>
         {links.map((navigationItem) => (
-          <S.NavItem key={navigationItem.title}>
-            <S.Link
+          <$NavItem key={navigationItem.title}>
+            <$Link
               href={navigationItem.route}
               mobileView={mobileView}
               color={overlaidHeader ? global.color : 'white'}
               overlaidHeader={overlaidHeader}
             >
               {navigationItem.title}
-            </S.Link>
-          </S.NavItem>
+            </$Link>
+          </$NavItem>
         ))}
-      </S.NavList>
-    </S.Nav>
+      </$NavList>
+    </$Nav>
   )
 }

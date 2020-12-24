@@ -2,11 +2,9 @@ import styled from 'styled-components'
 import { Nav } from './nav'
 import Logo from './logo'
 import global from '../../styles/globalVariables'
-import UnstyledLink from '../shared'
+import { UnstyledLink } from '../shared'
 
-const S = {}
-
-S.HeaderWrapper = styled.div`
+const $HeaderWrapper = styled.div`
   ${({ overlaidHeader }) =>
     overlaidHeader
       ? `
@@ -19,7 +17,7 @@ S.HeaderWrapper = styled.div`
     `}
 `
 
-S.Header = styled.header`
+const $Header = styled.header`
   max-width: ${global.maxWidth};
   margin: auto;
   display: flex;
@@ -40,7 +38,7 @@ S.Header = styled.header`
   `}
 `
 
-S.SiteNameAndLogo = styled.div`
+const $SiteNameAndLogo = styled.div`
   display: inline-flex;
   align-items: center;
   font-size: 1.5rem;
@@ -62,9 +60,9 @@ function Header({ overlaidHeader }) {
   ]
 
   return (
-    <S.HeaderWrapper overlaidHeader={overlaidHeader}>
-      <S.Header overlaidHeader={overlaidHeader}>
-        <S.SiteNameAndLogo>
+    <$HeaderWrapper overlaidHeader={overlaidHeader}>
+      <$Header overlaidHeader={overlaidHeader}>
+        <$SiteNameAndLogo>
           <UnstyledLink href='/'>
             <Logo color={overlaidHeader ? global.color : 'white'}></Logo>
           </UnstyledLink>
@@ -74,11 +72,11 @@ function Header({ overlaidHeader }) {
           >
             <strong>Canopia</strong>.ca
           </UnstyledLink>
-        </S.SiteNameAndLogo>
+        </$SiteNameAndLogo>
 
         <Nav links={links} overlaidHeader={overlaidHeader}></Nav>
-      </S.Header>
-    </S.HeaderWrapper>
+      </$Header>
+    </$HeaderWrapper>
   )
 }
 

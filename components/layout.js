@@ -2,18 +2,16 @@ import styled from 'styled-components'
 import Header from './header'
 import Footer from './footer'
 
-const S = {}
-
-S.Wrapper = styled.div``
-S.Main = styled.main``
+const $Wrapper = styled.div``
+const $Main = styled.main``
 
 function Layout({ children, overlaidHeader }) {
   return (
-    <S.Wrapper>
+    <$Wrapper>
       <Header overlaidHeader={overlaidHeader} />
-      <S.Main>{children}</S.Main>
+      <$Main>{children}</$Main>
       <Footer />
-    </S.Wrapper>
+    </$Wrapper>
   )
 }
 
