@@ -1,20 +1,18 @@
 import global from '../../styles/globalVariables'
 import styled from 'styled-components'
-import { UnstyledLink } from '../shared'
 import Link from 'next/link'
 
-function AnchorLink({ href, children }) {
+function AnchorLink({ anchor, children }) {
+  const scrollToAnchor = (e) => {
+    e.preventDefault()
+    const el = document.querySelector(anchor)
+    el.scrollIntoView({ behavior: 'smooth' })
+  }
   return (
-    <Link href={href}>
-      <a
-        href={href}
-        onClick={(e) => {
-          console.log('hi')
-          e.preventDefault()
-        }}
-      >
+    <Link href={anchor}>
+      <$A scrollToAnchor={scrollToAnchor} href={anchor}>
         {children}
-      </a>
+      </$A>
     </Link>
   )
 }
@@ -29,10 +27,29 @@ const Hero = () => (
         <br />
         <$Smaller>of</$Smaller> <$Green>Perennial Ecosystems</$Green>
       </$H1>
-      <$AnchorLink href='#latest-posts'>See recent posts</$AnchorLink>
+      <AnchorLink anchor='#latest-posts'>See recent posts</AnchorLink>
     </$Dialog>
   </$Hero>
 )
+
+const $A = styled(({ children, anchor, className, scrollToAnchor }) => (
+  <a href={anchor} className={className} onClick={scrollToAnchor}>
+    {children}
+  </a>
+))`
+  cursor: pointer;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: black;
+  padding: 0.2em 0.5em;
+  text-decoration: none;
+  border-bottom: 2px solid black;
+  transition: color ${global.transitionTime};
+  &:hover {
+    color: ${global.green};
+  }
+`
 
 const $Smaller = styled.span`
   font-size: 0.9em;
@@ -45,18 +62,15 @@ const $Green = styled.strong`
 `
 
 const $Dialog = styled.div`
-  padding: 2rem;
+  padding: 2em;
   background: rgba(237, 238, 240, 0.5);
-`
-
-const $AnchorLink = styled(AnchorLink)`
-  padding: 2rem;
-  background: rgba(237, 238, 240, 0.5);
+  text-align: center;
 `
 
 const $H1 = styled.h1`
   font-weight: normal;
   text-align: center;
+  margin-bottom: 1em;
 `
 
 const $Hero = styled.section`

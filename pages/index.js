@@ -1,43 +1,45 @@
 import Layout from '../components/layout'
 import Header from '../components/header'
 import { getSortedPostsData } from '../lib/posts'
-import { Hero } from '../components/index/hero'
+import styled from 'styled-components'
+import { UnstyledLink } from '../components/shared'
+import { Hero, PostPreview } from '../components/index'
 
 function IndexPage({ allPostsData }) {
   return (
     <Layout overlaidHeader>
       <Hero />
       <Header></Header>
-      <section id='latest-posts'>
-        <h2>Latest Posts</h2>
+      <$LatestPosts id='latest-posts'>
+        <$H2>Latest Posts</$H2>
         <div>
           <ul>
-            {allPostsData.map(({ id, date, title }) => (
+            {allPostsData.map(({ id, date, title, preview }) => (
               <li key={id}>
-                <a href={`/posts/${id}`}>{title}</a> ({date})
-              </li>
-            ))}
-            {allPostsData.map(({ id, date, title }) => (
-              <li key={id}>
-                <a href={`/posts/${id}`}>{title}</a> ({date})
-              </li>
-            ))}
-            {allPostsData.map(({ id, date, title }) => (
-              <li key={id}>
-                <a href={`/posts/${id}`}>{title}</a> ({date})
-              </li>
-            ))}
-            {allPostsData.map(({ id, date, title }) => (
-              <li key={id}>
-                <a href={`/posts/${id}`}>{title}</a> ({date})
+                <UnstyledLink href={`/posts/${id}`}>
+                  <PostPreview date={date} title={title} preview={preview} />
+                </UnstyledLink>
               </li>
             ))}
           </ul>
         </div>
-      </section>
+      </$LatestPosts>
     </Layout>
   )
 }
+
+const $LatestPosts = styled.section`
+  margin-top: 8em;
+`
+
+const $H2 = styled.h2`
+  font-weight: normal;
+  font-size: 2.5em;
+  margin: 1.5em 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+`
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
