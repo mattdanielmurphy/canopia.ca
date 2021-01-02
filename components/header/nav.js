@@ -37,7 +37,7 @@ const $NavList = styled.ul`
   margin: 0;
   justify-content: flex-end;
   padding: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity ${global.transitionTime};
   ${({ mobileView, isExpanded }) =>
     mobileView
       ? `
