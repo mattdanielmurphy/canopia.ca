@@ -1,18 +1,6 @@
 import styled from 'styled-components'
 import global from '../shared/globalVariables'
 
-const $PostPreview = styled.div`
-  display: flex;
-`
-
-const $TitleAndPreview = styled.div``
-
-const $Title = styled.div``
-const $PreviewBody = styled.div``
-
-const $Date = styled.div`
-  color: ${global.midGrey};
-`
 const PostPreview = ({ date, title, preview }) => (
   <$PostPreview>
     <$Date>{date}</$Date>
@@ -23,6 +11,16 @@ const PostPreview = ({ date, title, preview }) => (
   </$PostPreview>
 )
 
-module.exports = {
-  PostPreview,
-}
+const $PostPreview = styled.div`
+  display: flex;
+`
+
+const $TitleAndPreview = styled.div``
+const $Title = styled.div``
+const $PreviewBody = styled.div``
+
+const $Date = styled.div`
+  color: ${global.midGrey};
+`
+
+export default PostPreview

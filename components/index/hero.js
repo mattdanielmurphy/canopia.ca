@@ -85,6 +85,4 @@ const $Hero = styled.section`
   justify-content: center;
 `
 
-module.exports = {
-  Hero,
-}
+export default Hero

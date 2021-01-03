@@ -1,2 +1,2 @@
-export { Hero } from './hero'
-export { PostPreview } from './postPreview'
+export { default as Hero } from './hero'
+export { default as PostPreview } from './postPreview'

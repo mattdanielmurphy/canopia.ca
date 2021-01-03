@@ -1,8 +1,41 @@
 import styled from 'styled-components'
-import { Nav } from './nav'
+import Nav from './nav'
 import Logo from './logo'
 import global from '../shared/globalVariables'
 import { UnstyledLink } from '../shared'
+
+function Header({ overlaidHeader }) {
+  const links = [
+    { title: 'About', route: '/about' },
+    { title: 'Contact', route: '/contact' },
+    { title: 'Presentation', route: '/presentation' },
+    { title: 'Articles & Resources', route: '/articles-and-resources' },
+    { title: 'Blog Posts', route: '/blog-posts' },
+  ]
+
+  return (
+    <$HeaderWrapper overlaidHeader={overlaidHeader}>
+      <$Header overlaidHeader={overlaidHeader}>
+        <$SiteNameAndLogo>
+          <UnstyledLink href='/'>
+            <Logo
+              color={overlaidHeader ? global.color : global.oppositeColor}
+            ></Logo>
+          </UnstyledLink>
+          <UnstyledLink
+            href='/'
+            color={overlaidHeader ? global.color : global.oppositeColor}
+            hoverColor={overlaidHeader ? global.green : global.color}
+          >
+            <strong>Canopia</strong>.ca
+          </UnstyledLink>
+        </$SiteNameAndLogo>
+
+        <Nav links={links} overlaidHeader={overlaidHeader}></Nav>
+      </$Header>
+    </$HeaderWrapper>
+  )
+}
 
 const $HeaderWrapper = styled.div`
   ${({ overlaidHeader }) =>
@@ -49,38 +82,5 @@ const $SiteNameAndLogo = styled.div`
     font-size: 1.3rem;
   }
 `
-
-function Header({ overlaidHeader }) {
-  const links = [
-    { title: 'About', route: '/about' },
-    { title: 'Contact', route: '/contact' },
-    { title: 'Presentation', route: '/presentation' },
-    { title: 'Articles & Resources', route: '/articles-and-resources' },
-    { title: 'Blog Posts', route: '/blog-posts' },
-  ]
-
-  return (
-    <$HeaderWrapper overlaidHeader={overlaidHeader}>
-      <$Header overlaidHeader={overlaidHeader}>
-        <$SiteNameAndLogo>
-          <UnstyledLink href='/'>
-            <Logo
-              color={overlaidHeader ? global.color : global.oppositeColor}
-            ></Logo>
-          </UnstyledLink>
-          <UnstyledLink
-            href='/'
-            color={overlaidHeader ? global.color : global.oppositeColor}
-            hoverColor={overlaidHeader ? global.green : global.color}
-          >
-            <strong>Canopia</strong>.ca
-          </UnstyledLink>
-        </$SiteNameAndLogo>
-
-        <Nav links={links} overlaidHeader={overlaidHeader}></Nav>
-      </$Header>
-    </$HeaderWrapper>
-  )
-}
 
 export default Header

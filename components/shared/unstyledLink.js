@@ -2,29 +2,6 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import global from './globalVariables'
 
-const $A = styled.a`
-  ${({ bold }) => bold && 'font-weight: bold'};
-  color: ${({ color }) => color};
-  text-decoration: none;
-  transition: 0.2s ease;
-  &:hover {
-    color: ${({ hoverColor }) => hoverColor};
-  }
-  ${({ underlined, color }) =>
-    underlined && `border-bottom: 1px solid ${color}`};
-`
-
-const $FakeLink = styled.span`
-  ${({ bold }) => bold && 'font-weight: bold'};
-  color: ${({ color }) => color};
-  text-decoration: none;
-  transition: 0.2s ease;
-  &:hover {
-    color: ${({ hoverColor }) => hoverColor};
-    cursor: pointer;
-  }
-`
-
 const UnstyledLink = ({
   href,
   children,
@@ -61,5 +38,28 @@ const UnstyledLink = ({
     </$FakeLink>
   )
 }
+
+const $A = styled.a`
+  ${({ bold }) => bold && 'font-weight: bold'};
+  color: ${({ color }) => color};
+  text-decoration: none;
+  transition: 0.2s ease;
+  &:hover {
+    color: ${({ hoverColor }) => hoverColor};
+  }
+  ${({ underlined, color }) =>
+    underlined && `border-bottom: 1px solid ${color}`};
+`
+
+const $FakeLink = styled.span`
+  ${({ bold }) => bold && 'font-weight: bold'};
+  color: ${({ color }) => color};
+  text-decoration: none;
+  transition: 0.2s ease;
+  &:hover {
+    color: ${({ hoverColor }) => hoverColor};
+    cursor: pointer;
+  }
+`
 
 export default UnstyledLink

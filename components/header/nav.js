@@ -4,87 +4,7 @@ import useWindowSize from '../../lib/useWindowSize'
 import global from '../shared/globalVariables'
 import { UnstyledLink } from '../shared'
 
-const $BlankButton = styled.button`
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-`
-
-const $Nav = styled.nav`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`
-
-const $ToggleNavButton = styled($BlankButton)`
-  width: 40px;
-  align-self: flex-end;
-`
-
-const $CloseNavMenuOverlay = styled($BlankButton)`
-  background: rgba(${global.colorAsRGB}, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  cursor: url('close-cursor.svg'), auto;
-`
-
-const $NavList = styled.ul`
-  list-style: none;
-  margin: 0;
-  justify-content: flex-end;
-  padding: 0;
-  transition: opacity ${global.transitionTime};
-  ${({ mobileView, isExpanded }) =>
-    mobileView
-      ? `
-      z-index: 9999;
-      display: ${isExpanded ? 'block' : 'none'};
-      position: fixed;
-      top: 0;
-      text-align: right;
-      left: 0;
-      right: 0;
-      background: white;
-      padding: 2rem;
-    `
-      : `
-      display: flex;
-    `}
-`
-
-const $NavItem = styled.li``
-
-const $Link = styled(UnstyledLink)`
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.09rem;
-  padding: 0 1.5rem;
-  ${({ mobileView }) =>
-    mobileView
-      ? `
-      padding: 0.2rem;
-      font-size: 1.6rem;
-    `
-      : `
-      @media (max-width: 1200px) {
-        padding: 0 1rem;
-      }
-      @media (max-width: 1050px) {
-        padding: 0 0.8rem;
-        font-size: 0.95rem;
-      }
-      @media (max-width: 950px) {
-        padding: 0 0.7rem;
-        font-size: 0.85rem;
-      }
-    `}
-`
-
-export function Nav({ links, overlaidHeader }) {
+function Nav({ links, overlaidHeader }) {
   const [isExpanded, setExpansion] = useState(false)
   const toggleExpansion = () => setExpansion(!isExpanded)
   const [mobileView, setMobileView] = useState(true)
@@ -166,3 +86,85 @@ export function Nav({ links, overlaidHeader }) {
     </$Nav>
   )
 }
+
+const $BlankButton = styled.button`
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+`
+
+const $Nav = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
+
+const $ToggleNavButton = styled($BlankButton)`
+  width: 40px;
+  align-self: flex-end;
+`
+
+const $CloseNavMenuOverlay = styled($BlankButton)`
+  background: rgba(${global.colorAsRGB}, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  cursor: url('close-cursor.svg'), auto;
+`
+
+const $NavList = styled.ul`
+  list-style: none;
+  margin: 0;
+  justify-content: flex-end;
+  padding: 0;
+  transition: opacity ${global.transitionTime};
+  ${({ mobileView, isExpanded }) =>
+    mobileView
+      ? `
+      z-index: 9999;
+      display: ${isExpanded ? 'block' : 'none'};
+      position: fixed;
+      top: 0;
+      text-align: right;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+    `
+      : `
+      display: flex;
+    `}
+`
+
+const $NavItem = styled.li``
+
+const $Link = styled(UnstyledLink)`
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
+  padding: 0 1.5rem;
+  ${({ mobileView }) =>
+    mobileView
+      ? `
+      padding: 0.2rem;
+      font-size: 1.6rem;
+    `
+      : `
+      @media (max-width: 1200px) {
+        padding: 0 1rem;
+      }
+      @media (max-width: 1050px) {
+        padding: 0 0.8rem;
+        font-size: 0.95rem;
+      }
+      @media (max-width: 950px) {
+        padding: 0 0.7rem;
+        font-size: 0.85rem;
+      }
+    `}
+`
+
+export default Nav
