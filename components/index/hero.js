@@ -1,4 +1,4 @@
-import global from '../../styles/globalVariables'
+import global from '../shared/globalVariables'
 import styled from 'styled-components'
 import Link from 'next/link'
 
@@ -27,7 +27,7 @@ const Hero = () => (
         <br />
         <$Smaller>of</$Smaller> <$Green>Perennial Ecosystems</$Green>
       </$H1>
-      <AnchorLink anchor='#latest-posts'>See recent posts</AnchorLink>
+      <AnchorLink anchor='#latest-posts'>See latest posts</AnchorLink>
     </$Dialog>
   </$Hero>
 )

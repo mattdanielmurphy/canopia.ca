@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { UnstyledLink } from '../components/shared'
 import { Hero, PostPreview } from '../components/index'
 
-function IndexPage({ allPostsData }) {
+function Homepage({ allPostsData }) {
   return (
     <Layout overlaidHeader>
       <Hero />
@@ -46,4 +46,4 @@ export async function getStaticProps() {
   return { props: { allPostsData } }
 }
 
-export default IndexPage
+export default Homepage

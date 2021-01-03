@@ -8,16 +8,3 @@ body {
 footer a {
   text-decoration: underline;
 }
-
-.unstyled-link {
-  text-decoration: none;
-  transition: 0.2s ease;
-}
-
-.unstyled-link:hover {
-  color: black !important;
-}
-
-.unstyled-link.overlaid-header:hover {
-  color: #577832 !important;
-}

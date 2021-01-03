@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import global from '../../styles/globalVariables'
+import global from '../shared/globalVariables'
 
 const SVG = styled.svg`
   padding-right: 1rem;

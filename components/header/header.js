@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Nav } from './nav'
 import Logo from './logo'
-import global from '../../styles/globalVariables'
+import global from '../shared/globalVariables'
 import { UnstyledLink } from '../shared'
 
 const $HeaderWrapper = styled.div`
@@ -64,11 +64,14 @@ function Header({ overlaidHeader }) {
       <$Header overlaidHeader={overlaidHeader}>
         <$SiteNameAndLogo>
           <UnstyledLink href='/'>
-            <Logo color={overlaidHeader ? global.color : 'white'}></Logo>
+            <Logo
+              color={overlaidHeader ? global.color : global.oppositeColor}
+            ></Logo>
           </UnstyledLink>
           <UnstyledLink
             href='/'
-            color={overlaidHeader ? global.color : 'white'}
+            color={overlaidHeader ? global.color : global.oppositeColor}
+            hoverColor={overlaidHeader ? global.green : global.color}
           >
             <strong>Canopia</strong>.ca
           </UnstyledLink>

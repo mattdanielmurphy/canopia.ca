@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useWindowSize from '../../lib/useWindowSize'
-import global from '../../styles/globalVariables'
+import global from '../shared/globalVariables'
 import { UnstyledLink } from '../shared'
 
 const $BlankButton = styled.button`
@@ -23,12 +23,12 @@ const $ToggleNavButton = styled($BlankButton)`
 `
 
 const $CloseNavMenuOverlay = styled($BlankButton)`
-  position: absolute;
-  top: 13rem;
   background: rgba(${global.colorAsRGB}, 0.7);
-  bottom: 0;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
+  height: 100vh;
   cursor: url('close-cursor.svg'), auto;
 `
 
@@ -41,13 +41,14 @@ const $NavList = styled.ul`
   ${({ mobileView, isExpanded }) =>
     mobileView
       ? `
+      z-index: 9999;
       display: ${isExpanded ? 'block' : 'none'};
-      position: absolute;
+      position: fixed;
       top: 0;
       text-align: right;
       left: 0;
       right: 0;
-      background: ${global.color};
+      background: white;
       padding: 2rem;
     `
       : `
@@ -55,15 +56,9 @@ const $NavList = styled.ul`
     `}
 `
 
-const $NavItem = styled.li`
-  ${({ mobileView }) =>
-    !mobileView &&
-    `
-  `}
-`
+const $NavItem = styled.li``
 
 const $Link = styled(UnstyledLink)`
-  text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.09rem;
@@ -112,7 +107,7 @@ export function Nav({ links, overlaidHeader }) {
             <svg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <title>Menu</title>
               <path
-                fill={global.color}
+                fill={overlaidHeader ? global.color : global.oppositeColor}
                 d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'
               />
             </svg>
@@ -123,7 +118,7 @@ export function Nav({ links, overlaidHeader }) {
                 // these lines are so cursor goes back to normal immediately after clicking; otherwise,
                 // user must move cursor first... I don't know why a "0ms" timeout works but it does
                 e.target.style.cursor = 'default'
-                setTimeout(() => toggleExpansion(), 0)
+                setTimeout(toggleExpansion, 0)
               }}
             />
           )}
@@ -131,13 +126,37 @@ export function Nav({ links, overlaidHeader }) {
       )}
 
       <$NavList mobileView={mobileView} isExpanded={isExpanded}>
+        {mobileView && isExpanded && (
+          <$NavItem>
+            <$Link
+              mobileView
+              color={global.color}
+              bold
+              onClick={toggleExpansion}
+            >
+              X
+            </$Link>
+          </$NavItem>
+        )}
         {links.map((navigationItem) => (
           <$NavItem key={navigationItem.title}>
             <$Link
               href={navigationItem.route}
               mobileView={mobileView}
-              color={overlaidHeader ? global.color : 'white'}
-              overlaidHeader={overlaidHeader}
+              color={
+                mobileView
+                  ? global.color
+                  : overlaidHeader
+                  ? global.color
+                  : global.oppositeColor
+              }
+              hoverColor={
+                mobileView
+                  ? global.green
+                  : overlaidHeader
+                  ? global.green
+                  : global.color
+              }
             >
               {navigationItem.title}
             </$Link>

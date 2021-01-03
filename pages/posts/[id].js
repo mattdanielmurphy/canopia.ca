@@ -1,23 +1,25 @@
 import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import matter from 'gray-matter'
+import ReactMarkdown from 'react-markdown'
+import { $TextBody, $H2 } from '../../components/shared/'
 
-export default function Post({ postData }) {
+function PostTemplate({ content, data }) {
+  const frontmatter = data
   return (
     <Layout>
-      {postData.title}
-      <br />
-      {postData.id}
-      <br />
-      {postData.date}
+      <$TextBody>
+        <$H2>{frontmatter.title}</$H2>
+        <h3>{frontmatter.date}</h3>
+        <ReactMarkdown source={content} />
+      </$TextBody>
     </Layout>
   )
 }
 
-export async function getStaticPaths() {
-  const paths = getAllPostIds()
-  return { paths, fallback: false }
+PostTemplate.getInitialProps = async ({ query }) => {
+  const rawFile = await import(`../../posts/${query.id}.md`)
+  const { data, content } = matter(rawFile.default)
+  return { data, content }
 }
-export async function getStaticProps({ params }) {
-  const postData = getPostData(params.id)
-  return { props: { postData } }
-}
+
+export default PostTemplate
