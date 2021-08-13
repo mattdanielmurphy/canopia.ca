@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "gray-matter": "^4.0.2",
-    "next": "10.0.3",
+    "next": "11.1.0",
     "normalize.css": "^8.0.1",
     "raw-loader": "^4.0.2",
     "react": "17.0.1",
